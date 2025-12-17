@@ -1,0 +1,61 @@
+---
+title: "Postman setup"
+description: "To help you get started quickly, we’ve provided a Postman collection that contains all the necessary requests for our services."
+sidebarTitle: "Postman Setup"
+---
+
+## Getting Started with Our API Using Postman
+
+Follow this step-by-step guide to import and use the collection in Postman.
+
+### Step 1: Install Postman
+
+If you haven’t already installed Postman, download and install it from [Postman’s official site.](https://www.postman.com/downloads/)
+
+### Step 2: Access the Postman Collection & Environment
+
+The following download link contains a Postman Collection based on the latest API specification and a Postman Environment containing variables to get you started using the API as fast as possible!
+
+<CardGroup cols={1}>
+<Card title="Postman Collection & Environment" icon="download" iconType="solid" horizontal href="https://drive.google.com/file/d/11YpMfUAjmSiVycnp253dvvhwiv1w-L5-/view?usp=sharing">
+Download our Postman Collection & Environment here
+</Card>
+</CardGroup>
+
+### Step 3: Import the Postman Collection & Environment
+
+To import the Postman Collection & Environment:
+
+<Steps>
+<Step title="Open Postman"/>
+<Step title="In the upper left corner, click on the Import button."/>
+<Step title="In the Import window, either drag and drop or use the select files button to import the Postman Collection & Environment JSON files downloaded previously."/>
+<Step title="Click Import to add the collection & environment to your workspace."/>
+</Steps>
+
+### Step 4: Configure the Postman Environment
+
+<Steps>
+<Step title="Navigate to “Environments” on the left navigation bar, then select the environment you just imported."/>
+<Step title="You should now be able to edit the variable values. The following variables are available and some are preset:">
+
+   i. `baseUrl` = This is preset with the value `https://api.vanta.com/v1` which is the base URL including the current version number for all of Vanta’s external APIs.
+
+   ii. `authUrl` = This is preset with the value `https://api.vanta.com/oauth/token` which is the URL used to authenticate your application to retrieve a token that’s used in subsequent requests.
+
+   iii. `clientId` = Add your application’s client ID here.
+
+   iv. `clientSecret` = Add your application’s client secret here.
+
+   v. `bearerToken` = After authenticating, your token will be set to this variable automatically using a post-response script on the “Create Token” request.
+
+   <Frame>
+      ![](/images/docs/6d18b27-Screenshot_2024-07-31_at_8.15.48_PM.png)
+   </Frame>
+   vi. (Optional) If you are wanting to use the "Build Integrations" section, you will also have some variables for a few resource id values to input depending on the use case you want to test. These resource id's come from the "[Resource Creation](https://developer.vanta.com/docs/create-a-resource)" flow.
+   <Frame>
+      ![](/images/docs/33f06c0-Screenshot_2024-07-31_at_8.18.09_PM.png)
+   </Frame>
+</Step>
+</Steps>
+

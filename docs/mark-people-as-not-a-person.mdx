@@ -1,0 +1,164 @@
+---
+title: "Mark people as \"not a person\""
+description: "Mark Vanta users as 'not a person' using the Vanta API"
+sidebarTitle: "Mark People as \"not a person\""
+---
+
+## Mark Vanta Users as "not a person"
+
+In Vanta, you have the option to mark a user as 'Not a person'. This will exclude the user from any Onboarding checklists, as well as any other compliance related tests. This option is meant for user accounts that aren't directly tied to an Employee, but have created a Vanta user upon sync. These can be shared mailing lists, test accounts or any other cases when an IDP Account is synced to Vanta, but not representative of an actual person.
+
+**Steps:**
+
+<Steps>
+<Step title="Obtain the userId of the Vanta User(s) you'd like to mark as 'not a person'."/>
+<Step title="POST a request using the Mark as not people Endpoint"/>
+</Steps>
+
+
+## Mark as not people Endpoint
+
+The Mark as not people Endpoint allows you to mark a list of users as 'Not a person' and give a text 'reason' for doing so. In order to utilize this endpoint, you'll need a list of userIds of the Vanta Users you intend to change. You can get a User's ID from the [ListPeople](https://developer.vanta.com/reference/listpeople) Endpoint, or directly from the Vanta User's URL on the [People page](https://app.vanta.com/people/people)
+
+<Frame>
+![](/images/docs/267d205-SS-Google_Chrome-07-240624PM.png)
+</Frame>
+
+#### Endpoint
+
+`/people/mark-as-not-people`
+
+#### Request Body
+
+<CodeGroup>
+  ```json Example Request Body
+  {
+    "reason": "<string>",
+    "personIds": [
+      "<string>"
+    ]
+  }
+  ```
+</CodeGroup>
+
+### Mark as not people - Code Example
+
+<CodeGroup>
+  ```bash cURL
+  curl --location 'https://api.vanta.com/v1/people/mark-as-not-people' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --header 'Authorization: Bearer vat_YOUR_TOKEN' \
+  --data '{
+    "reason": "Shared mailing list",
+    "personIds": [
+      "640b888ba7e831e41f0d6cb6"
+    ]
+  }'
+  ```
+
+  ```JavaScript JavaScript - Fetch
+  const myHeaders = new Headers();
+  myHeaders.append("Content-Type", "application/json");
+  myHeaders.append("Accept", "application/json");
+  myHeaders.append("Authorization", "Bearer vat_YOUR_TOKEN");
+
+  const raw = JSON.stringify({
+    "reason": "Shared mailing list",
+    "personIds": [
+      "640b888ba7e831e41f0d6cb6"
+    ]
+  });
+
+  const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+  };
+
+  fetch("https://api.vanta.com/v1/people/mark-as-not-people", requestOptions)
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error));
+  ```
+
+  ```JavaScript NodeJS - Axios
+  const axios = require('axios');
+  let data = JSON.stringify({
+    "reason": "Shared mailing list",
+    "personIds": [
+      "640b888ba7e831e41f0d6cb6"
+    ]
+  });
+
+  let config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'https://api.vanta.com/v1/people/mark-as-not-people',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer vat_YOUR_TOKEN'
+    },
+    data : data
+  };
+
+  axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+  ```
+
+  ```Python Python - Requests
+  import requests
+  import json
+
+  url = "https://api.vanta.com/v1/people/mark-as-not-people"
+
+  payload = json.dumps({
+    "reason": "Shared mailing list",
+    "personIds": [
+      "640b888ba7e831e41f0d6cb6"
+    ]
+  })
+  headers = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Authorization': 'Bearer vat_YOUR_TOKEN'
+  }
+
+  response = requests.request("POST", url, headers=headers, data=payload)
+
+  print(response.text)
+  ```
+</CodeGroup>
+
+### Mark as not people - Example Response
+
+<CodeGroup>
+  ```JSON Example Response
+  {
+      "successfulIds": [
+          "640b888ba7e831e41f0d6cb6"
+      ]
+  }
+  ```
+</CodeGroup>
+
+**You can verify that the user has been marked as 'Not a person' via the [ListPeople](https://developer.vanta.com/reference/listpeople) Endpoint, or simply by viewing them on the [People page](https://app.vanta.com/people/people):**
+
+<Frame>
+![](/images/docs/b6350ed-SS-Google_Chrome-07-240643PM.png)
+</Frame>
+
+### Mark as Not People - Response Schema
+
+
+**`successfulIds`**: Array of successfully processed IDs
+
+  - **`[ ]`**: String User IDs of Vanta Users that were successfully marked as not people.
+

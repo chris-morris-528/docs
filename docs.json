@@ -1,83 +1,98 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "theme": "aspen",
+  "name": "Vanta Docs",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#240642",
+    "light": "#a13dff",
+    "dark": "#7339aa"
   },
-  "favicon": "/favicon.svg",
+  "appearance": {
+    "default": "light"
+  },
+  "styling": {
+    "codeblocks": "system"
+  },
+  "background": {
+    "color": {
+      "light": "#FAF7FE",
+      "dark": "#1C0236"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Nib Pro",
+      "source": "https://cdn.prod.website-files.com/64009032676f24f376f002fc/65301972e2080cdf82338ffb_nib-bold-pro.woff2",
+      "format": "woff2"
+    },
+    "body": {
+      "family": "Inter"
+    }
+  },
+  "favicon": "/favicon.png",
+  "contextual": {
+    "options": ["copy", "view", "chatgpt", "claude", "cursor", "mcp", "vscode"]
+  },
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Home",
+        "pages": ["index"]
+      },
+      {
+        "tab": "Docs",
         "groups": [
           {
-            "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
+            "group": "Getting Started",
+            "pages": ["docs/vanta-api-overview", "docs/vanta-postman-setup", "docs/vanta-first-api-request"]
           },
           {
-            "group": "Customization",
+            "group": "Guieds",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              {
+                "group": "Monitor & Manage Personnel",
+                "pages": [
+                  "docs/monitor-manage-personnel",
+                  "docs/mark-people-as-not-a-person"
+                ]
+              }
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
         "groups": [
           {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
+            "group": "Manage Vanta",
+            "openapi": ["reference/manage-vanta.json"]
           },
           {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
+            "group": "Build Integrations",
+            "openapi": ["reference/build-integrations.json"]
           }
         ]
+      },
+      {
+        "tab": "FAQ",
+        "pages": ["docs/faq"]
       }
     ],
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Help Center",
+          "href": "https://help.vanta.com/en/",
+          "icon": "circle-question"
+        },
+        {
+          "anchor": "Community",
+          "href": "https://www.vanta.com/community/join",
+          "icon": "users"
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://www.vanta.com/resourcetype/blogs",
           "icon": "newspaper"
         }
       ]
@@ -85,38 +100,26 @@
   },
   "logo": {
     "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "dark": "/logo/dark.svg",
+    "href": "https://www.vanta.com/"
   },
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Login",
+        "href": "https://app.vanta.com/login"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Request a demo",
+      "href": "https://www.vanta.com/demo"
     }
-  },
-  "contextual": {
-    "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "linkedin": "https://www.linkedin.com/company/vanta-security/",
+      "x": "https://twitter.com/TrustVanta"
     }
   }
 }

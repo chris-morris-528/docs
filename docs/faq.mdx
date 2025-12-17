@@ -1,0 +1,94 @@
+---
+title: "FAQ"
+---
+
+<AccordionGroup>
+<Accordion  defaultOpen="true" title="When creating my application, I am presented with a choice between 'Manage Vanta' and 'Build Integrations' - what is the difference between these two options?">
+The "Manage Vanta" application type is for managing all the data in your Vanta environment that was not created through a custom private or public integration. Applications of this type use the endpoints in the ["Manage Vanta" section](https://developer.vanta.com/reference/createcustomcontrol) on the API Reference page.
+
+The "Build Integrations" application type is for when you want to build a custom public or private integration with the Vanta API. Applications of this type use the endpoints in the ["Build Integrations" section](https://developer.vanta.com/reference/get-windowsusercomputer) on the API Reference page. If you're building an integration, be sure to follow this guide: [Build Integrations](doc:build-integrations)
+
+You can learn more about the different use cases each application type supports [here](doc:vanta-api-overview).
+</Accordion>
+
+<Accordion title="What is the difference between Vanta built integrations and custom built public or private integrations via the API?">
+Vanta has pre-built integrations that you can connect in the app on the [integrations](https://app.vanta.com/integrations) page. Vanta also allows you to build your own private or public integration with our API. These custom integrations enable partners to publish their integration into the Vanta ecosystem or let you build private integrations that can connect to external or on-premise environments you manage (see [this guide](https://developer.vanta.com/docs/build-integrations) for more details).
+</Accordion>
+
+<Accordion title="What are the current API rate limits?">
+Rate limits vary between different sets of endpoints. For the latest details, visit here: [API Overview: Rate Limits](https://developer.vanta.com/docs/vanta-api-overview#rate-limiting)
+</Accordion>
+
+<Accordion title="What should I do if I hit the rate limit?">
+If you do end up hitting the rate limit, you will receive a `429 - Too many requests` error. In this scenario, it's best for you to implement an exponential backoff, gradually increasing the time between retry attempts (e.g., wait for 1 second, then 2 seconds, and so on) to avoid hitting the rate limit repeatedly. We are always looking to enhance the API, so if you are running into this situation using a specific workflow or endpoint, please reach out to your Vanta point of contact and our team is happy to consult on best practices.
+</Accordion>
+
+<Accordion title="Where can I find information about which scopes my application should use?">
+Check out the [Permission Scopes](https://developer.vanta.com/docs/api-access-setup#permission-scopes) section on the Authentication page!
+</Accordion>
+
+<Accordion title="What is the endpoint I use to authenticate using my application`client_id` and `client_secret`?">
+The authentication endpoint is: [https://api.vanta.com/oauth/token](https://api.vanta.com/oauth/token). Follow [this guide](doc:api-access-setup) here for more details.
+</Accordion>
+
+<Accordion title="How does Vanta plan to handle breaking changes?">
+Vanta is committed to maintaining a stable API for the foreseeable future with no breaking changes. If and when Vanta does launch any API versioning, we will proactively reach out to all of our API users and communicate our plan for doing so ahead of time.
+</Accordion>
+
+<Accordion title="What do I do if my application client secret was compromised?">
+Navigate to the "[Developer Console](https://app.vanta.com/settings/developer-console)", select your application, and regenerate the client secret.
+<Frame>
+![](/images/docs/adf1d0a-SCR-20240731-uote.png)
+</Frame>
+</Accordion>
+
+<Accordion title="How long do API tokens last before they expire?">
+Tokens last for one hour once generated. An application can only have one active token at any given time. If you generate a new token, the previous one gets invalidated.
+</Accordion>
+
+<Accordion title="Does Vanta support multiple active tokens at the same time?">
+Vanta currently only allows a single active access\_token per Application today.
+</Accordion>
+
+<Accordion title="What happens when you request a second token?">
+If a second access\_token is requested using the same client\_id and client\_secret, the server issues a new access\_token and immediately revokes the previous one. Any in-flight requests using the old access\_token will fail with a 401 error.
+</Accordion>
+
+<Accordion title="Why enforce a single active token?">
+* Security: Limits risk of token leakage.
+* Simplicity: Easier to track and revoke tokens.
+</Accordion>
+
+<Accordion title="When using the Trust Center endpoints, where do I get my Trust Center 'slugId'?">
+<Steps>
+<Step>
+ Navigate to the Trust Center > Overview section.
+</Step>
+<Step>
+In the top right of the page, you'll see a unique URL for your Trust Center. It will look something like this "[https://app.vanta.com/your-domain.com/trust/tz7gh0fvb2ymzbl34hca2w"](https://app.vanta.com/your-domain.com/trust/tz7gh0fvb2ymzbl34hca2w%22). The "slugId" is the last part of the URL, which is a string of characters. In this example, it would be "tz7gh0fvb2ymzbl34hca2w".
+</Step>
+<Step>
+ If you have a customer domain, you'll have to go to the public Trust Center and inspect the element and look for the data-slug id in the `<head>` element.
+</Step>
+</Steps>
+<Frame>
+![](/images/docs/0d3e25d-SCR-20240731-ufkq.png)
+</Frame>
+</Accordion>
+
+<Accordion title="I'm trying to ingest Vulnerability data into Vanta but I'm not sure which endpoints to use. How would I go about this?">
+<Steps>
+<Step>
+First, make sure you created an application using the "Build Integrations" type (see this guide for more information: [Build Integrations](https://developer.vanta.com/docs/build-integrations).
+</Step>
+<Step>
+Use [this endpoint](https://developer.vanta.com/reference/put-vulnerablecomponent) to create vulnerable components, and then correlate them to the vulnerability itself of which Vanta supports the following types today:
+<CardGroup cols={3}>
+<Card title="Package Vulnerabilities" icon="square-1" iconType="solid"  href="https://developer.vanta.com/reference/put-packagevulnerabilityconnectors"/>
+<Card title="Static Code Analysis Vulnerabilities" icon="square-2" iconType="solid"  href="https://developer.vanta.com/reference/put-staticanalysiscodevulnerabilityconnectors"/>
+<Card title="API Endpoint Vulnerabilities" icon="square-3" iconType="solid"  href="https://developer.vanta.com/reference/put-apiendpointvulnerabilityconnectors"/>
+</CardGroup>
+</Step>
+</Steps>
+</Accordion>
+</AccordionGroup>
